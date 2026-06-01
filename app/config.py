@@ -38,6 +38,10 @@ class Settings:
     # deterministic sample resources instead. Keeps demos/tests offline-safe.
     EPIC_MOCK_MODE: bool = os.getenv("EPIC_MOCK_MODE", "true").lower() == "true"
 
+    # When true, load fictitious sample data on startup if the database is
+    # empty, so a freshly deployed instance shows working data immediately.
+    SEED_ON_STARTUP: bool = os.getenv("SEED_ON_STARTUP", "true").lower() == "true"
+
     # Illustrative conversion factor used to turn work RVUs into a charge when a
     # fee-schedule rate is not present for a code.
     MEDICARE_CONVERSION_FACTOR: float = float(

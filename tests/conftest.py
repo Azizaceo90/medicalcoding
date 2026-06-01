@@ -12,6 +12,7 @@ import pytest
 _DB_FD, _DB_PATH = tempfile.mkstemp(suffix=".db")
 os.environ["DATABASE_URL"] = f"sqlite:///{_DB_PATH}"
 os.environ["EPIC_MOCK_MODE"] = "true"
+os.environ["SEED_ON_STARTUP"] = "false"  # tests create their own data
 
 
 @pytest.fixture(scope="session")
