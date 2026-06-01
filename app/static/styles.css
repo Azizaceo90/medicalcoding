@@ -1,0 +1,102 @@
+:root {
+  --bg: #f4f6f9;
+  --card: #ffffff;
+  --ink: #1d2733;
+  --muted: #6b7785;
+  --brand: #c8102e;        /* Epic-ish red accent */
+  --brand-dark: #9c0c23;
+  --line: #e3e8ee;
+  --ok: #1a7f4b;
+  --warn: #b7791f;
+  --err: #c0392b;
+  --info: #2563a8;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.45;
+}
+header {
+  background: linear-gradient(135deg, #1d2733, #2c3e50);
+  color: #fff;
+  padding: 18px 28px;
+  position: relative;
+}
+header h1 { margin: 0; font-size: 22px; }
+header .sub { margin: 4px 0 0; color: #c5d0db; font-size: 13px; }
+.badge {
+  position: absolute; top: 18px; right: 28px;
+  background: rgba(255,255,255,.15); padding: 6px 12px; border-radius: 20px;
+  font-size: 12px;
+}
+main { max-width: 1080px; margin: 22px auto; padding: 0 20px; }
+.card {
+  background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+  padding: 18px 20px; margin-bottom: 18px; box-shadow: 0 1px 2px rgba(0,0,0,.03);
+}
+h2 { font-size: 17px; margin: 0 0 10px; display: flex; align-items: center; gap: 10px; }
+h3 { font-size: 14px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+.step {
+  background: var(--brand); color: #fff; width: 26px; height: 26px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center; font-size: 14px;
+}
+.muted { color: var(--muted); font-size: 13px; }
+.row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin: 8px 0; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+@media (max-width: 760px) { .two-col { grid-template-columns: 1fr; } }
+
+input {
+  padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px; font-size: 13px;
+  flex: 1 1 140px; min-width: 120px;
+}
+button {
+  padding: 8px 14px; border: 1px solid var(--line); background: #fff; border-radius: 6px;
+  cursor: pointer; font-size: 13px; transition: .15s;
+}
+button:hover { background: #f0f2f5; }
+button.primary { background: var(--brand); color: #fff; border-color: var(--brand); }
+button.primary:hover { background: var(--brand-dark); }
+
+table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 13px; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); }
+th { color: var(--muted); font-weight: 600; font-size: 12px; }
+
+.encounter-list { margin-top: 12px; display: grid; gap: 8px; }
+.enc-item {
+  border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.enc-item:hover { border-color: var(--brand); }
+.enc-item.active { border-color: var(--brand); background: #fff5f6; }
+.pill { font-size: 11px; padding: 2px 8px; border-radius: 12px; background: #eef1f5; color: var(--muted); }
+.pill.inpatient { background: #e7f0fb; color: var(--info); }
+.pill.outpatient { background: #e9f6ee; color: var(--ok); }
+
+.search-results { display: grid; gap: 4px; margin: 6px 0; max-height: 180px; overflow: auto; }
+.search-results div {
+  padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px; cursor: pointer; font-size: 12px;
+}
+.search-results div:hover { background: #f5f7fa; border-color: var(--brand); }
+
+.issue { padding: 8px 10px; border-left: 4px solid var(--line); border-radius: 4px; margin: 6px 0; font-size: 13px; background: #fafbfc; }
+.issue.error { border-color: var(--err); }
+.issue.warning { border-color: var(--warn); }
+.issue.info { border-color: var(--info); }
+.issue .rule { font-family: ui-monospace, monospace; font-size: 11px; color: var(--muted); }
+
+.status-ok { color: var(--ok); font-weight: 600; }
+.status-bad { color: var(--err); font-weight: 600; }
+
+.hidden { display: none; }
+.tag { display:inline-block; font-family: ui-monospace, monospace; background:#eef1f5; padding:1px 6px; border-radius:4px; }
+
+footer {
+  max-width: 1080px; margin: 10px auto 40px; padding: 0 20px; color: var(--muted);
+  font-size: 12px; display: flex; justify-content: space-between;
+}
+footer a { color: var(--brand); }
+pre { background:#0d1117; color:#c9d1d9; padding:12px; border-radius:8px; overflow:auto; font-size:12px; }

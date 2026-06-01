@@ -1,0 +1,34 @@
+{
+  "comment": "Representative subset of ICD-10-CM (diagnosis) and ICD-10-PCS (inpatient procedure) codes for demonstration. ICD-10-CM/PCS are published by CMS/NCHS and are in the public domain.",
+  "cm": [
+    {"code": "I10", "description": "Essential (primary) hypertension", "billable": true, "category": "Circulatory", "sex": "any", "age_min": 0, "age_max": 124},
+    {"code": "E11.9", "description": "Type 2 diabetes mellitus without complications", "billable": true, "category": "Endocrine", "sex": "any", "age_min": 0, "age_max": 124},
+    {"code": "E11.65", "description": "Type 2 diabetes mellitus with hyperglycemia", "billable": true, "category": "Endocrine", "sex": "any", "age_min": 0, "age_max": 124},
+    {"code": "J45.909", "description": "Unspecified asthma, uncomplicated", "billable": true, "category": "Respiratory", "sex": "any", "age_min": 0, "age_max": 124},
+    {"code": "J18.9", "description": "Pneumonia, unspecified organism", "billable": true, "category": "Respiratory", "sex": "any", "age_min": 0, "age_max": 124},
+    {"code": "J44.1", "description": "COPD with (acute) exacerbation", "billable": true, "category": "Respiratory", "sex": "any", "age_min": 0, "age_max": 124},
+    {"code": "N39.0", "description": "Urinary tract infection, site not specified", "billable": true, "category": "Genitourinary", "sex": "any", "age_min": 0, "age_max": 124},
+    {"code": "K21.9", "description": "Gastro-esophageal reflux disease without esophagitis", "billable": true, "category": "Digestive", "sex": "any", "age_min": 0, "age_max": 124},
+    {"code": "K35.80", "description": "Unspecified acute appendicitis", "billable": true, "category": "Digestive", "sex": "any", "age_min": 0, "age_max": 124},
+    {"code": "M54.5", "description": "Low back pain (header - not billable)", "billable": false, "category": "Musculoskeletal", "sex": "any", "age_min": 0, "age_max": 124},
+    {"code": "M54.50", "description": "Low back pain, unspecified", "billable": true, "category": "Musculoskeletal", "sex": "any", "age_min": 0, "age_max": 124},
+    {"code": "S72.001A", "description": "Fracture of unspecified part of neck of right femur, initial encounter for closed fracture", "billable": true, "category": "Injury", "sex": "any", "age_min": 0, "age_max": 124},
+    {"code": "I21.4", "description": "Non-ST elevation (NSTEMI) myocardial infarction", "billable": true, "category": "Circulatory", "sex": "any", "age_min": 0, "age_max": 124},
+    {"code": "I50.9", "description": "Heart failure, unspecified", "billable": true, "category": "Circulatory", "sex": "any", "age_min": 0, "age_max": 124},
+    {"code": "Z00.00", "description": "Encounter for general adult medical exam without abnormal findings", "billable": true, "category": "Factors", "sex": "any", "age_min": 18, "age_max": 124},
+    {"code": "Z38.00", "description": "Single liveborn infant, delivered vaginally", "billable": true, "category": "Newborn", "sex": "any", "age_min": 0, "age_max": 0},
+    {"code": "O80", "description": "Encounter for full-term uncomplicated delivery", "billable": true, "category": "Pregnancy", "sex": "female", "age_min": 12, "age_max": 55},
+    {"code": "N40.0", "description": "Benign prostatic hyperplasia without lower urinary tract symptoms", "billable": true, "category": "Genitourinary", "sex": "male", "age_min": 30, "age_max": 124},
+    {"code": "R07.9", "description": "Chest pain, unspecified", "billable": true, "category": "Symptoms", "sex": "any", "age_min": 0, "age_max": 124},
+    {"code": "R10.9", "description": "Unspecified abdominal pain", "billable": true, "category": "Symptoms", "sex": "any", "age_min": 0, "age_max": 124}
+  ],
+  "pcs": [
+    {"code": "0DTJ4ZZ", "description": "Resection of appendix, percutaneous endoscopic approach (laparoscopic appendectomy)", "billable": true},
+    {"code": "02703ZZ", "description": "Dilation of coronary artery, one site, percutaneous approach", "billable": true},
+    {"code": "0SR9019", "description": "Replacement of right hip joint with synthetic substitute, cemented, open approach", "billable": true},
+    {"code": "0W9G3ZZ", "description": "Drainage of peritoneal cavity, percutaneous approach", "billable": true},
+    {"code": "10D00Z1", "description": "Extraction of products of conception, low cervical, open approach (cesarean)", "billable": true},
+    {"code": "5A1221Z", "description": "Performance of cardiac output, continuous", "billable": true},
+    {"code": "B2151ZZ", "description": "Fluoroscopy of multiple coronary arteries using low osmolar contrast", "billable": true}
+  ]
+}

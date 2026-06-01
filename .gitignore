@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+
+# Local database
+*.db
+medicalcoding.db
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+
+# Secrets / local env
+.env
+.env.local
