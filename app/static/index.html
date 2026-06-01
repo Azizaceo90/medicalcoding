@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Medical Coding &amp; Billing — Epic Integration</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <header>
+    <h1>🏥 Medical Coding &amp; Billing System</h1>
+    <p class="sub">Inpatient &amp; outpatient coding · ICD-10 / CPT verification · Epic FHIR R4</p>
+    <div id="epic-badge" class="badge">Epic: checking…</div>
+  </header>
+
+  <main>
+    <!-- Step 1: Import from Epic -->
+    <section class="card">
+      <h2><span class="step">1</span> Import clinical documentation from Epic</h2>
+      <p class="muted">Pull a patient, encounter and notes from the Epic FHIR sandbox (mock scenarios below).</p>
+      <div class="row">
+        <button class="primary" onclick="importEncounter('outpatient')">Import Outpatient Case</button>
+        <button class="primary" onclick="importEncounter('inpatient')">Import Inpatient Case</button>
+        <button onclick="loadEncounters()">Refresh encounter list</button>
+      </div>
+      <div id="encounter-list" class="encounter-list"></div>
+    </section>
+
+    <!-- Active encounter workspace -->
+    <section id="workspace" class="hidden">
+      <section class="card">
+        <h2><span class="step">2</span> Encounter &amp; documentation</h2>
+        <div id="encounter-header"></div>
+        <details>
+          <summary>Clinical documentation</summary>
+          <div id="documents"></div>
+        </details>
+      </section>
+
+      <!-- Step 3: CPT verification tool -->
+      <section class="card">
+        <h2><span class="step">3</span> Verify a CPT code</h2>
+        <div class="row">
+          <input id="verify-code" placeholder="CPT/HCPCS e.g. 99213" />
+          <input id="verify-mods" placeholder="modifiers e.g. 25,95" />
+          <button class="primary" onclick="verifyCpt()">Verify</button>
+        </div>
+        <div id="verify-result"></div>
+      </section>
+
+      <!-- Step 4: Assign codes -->
+      <section class="card">
+        <h2><span class="step">4</span> Assign codes</h2>
+        <div class="two-col">
+          <div>
+            <h3>Diagnoses (ICD-10)</h3>
+            <div class="row">
+              <input id="dx-search" placeholder="search ICD-10…" oninput="searchIcd()" />
+            </div>
+            <div id="dx-search-results" class="search-results"></div>
+            <table id="dx-table"><thead><tr><th>Code</th><th>Description</th><th>Principal</th><th></th></tr></thead><tbody></tbody></table>
+          </div>
+          <div>
+            <h3>Procedures (CPT / HCPCS / PCS)</h3>
+            <div class="row">
+              <input id="px-search" placeholder="search CPT…" oninput="searchCpt()" />
+            </div>
+            <div id="px-search-results" class="search-results"></div>
+            <table id="px-table"><thead><tr><th>Code</th><th>Description</th><th>Mods</th><th>Dx ptr</th><th></th></tr></thead><tbody></tbody></table>
+          </div>
+        </div>
+        <div class="row">
+          <button class="primary" onclick="submitCoding()">Save coding &amp; validate</button>
+        </div>
+      </section>
+
+      <!-- Step 5: Validation -->
+      <section class="card">
+        <h2><span class="step">5</span> Validation &amp; edits</h2>
+        <div id="validation-summary" class="muted">Save coding to run edits.</div>
+        <div id="validation-detail"></div>
+      </section>
+
+      <!-- Step 6: Billing -->
+      <section class="card">
+        <h2><span class="step">6</span> Generate claim &amp; export to Epic</h2>
+        <div class="row">
+          <button class="primary" onclick="generateClaim()">Generate claim</button>
+          <button onclick="exportClaim()">Export FHIR claim to Epic</button>
+        </div>
+        <div id="claim-result"></div>
+      </section>
+    </section>
+  </main>
+
+  <footer>
+    <span>Demo system · CPT is a trademark of the AMA — production use requires a license.</span>
+    <a href="/docs" target="_blank">API docs</a>
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

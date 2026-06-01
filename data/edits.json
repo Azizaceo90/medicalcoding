@@ -1,0 +1,21 @@
+{
+  "comment": "Illustrative NCCI Procedure-to-Procedure (PTP) edits and an ICD-10 to CPT medical-necessity crosswalk. Real NCCI/LCD/NCD edits are published quarterly by CMS; this is a small demonstration set.",
+  "ncci_ptp": [
+    {"column1": "93000", "column2": "93005", "modifier_indicator": "0", "rationale": "93005 (tracing only) is a component of 93000 (complete ECG); not separately reportable."},
+    {"column1": "93000", "column2": "93010", "modifier_indicator": "0", "rationale": "93010 (interpretation only) is a component of 93000 (complete ECG); not separately reportable."},
+    {"column1": "44970", "column2": "44950", "modifier_indicator": "1", "rationale": "Open and laparoscopic appendectomy on same session - bundled; modifier allowed only if separate anatomic site/session."},
+    {"column1": "80053", "column2": "85025", "modifier_indicator": "9", "rationale": "No edit (indicator 9 = not applicable); panels are separately reportable."}
+  ],
+  "medical_necessity": [
+    {"cpt": "93000", "supporting_icd": ["R07.9", "I21.4", "I50.9", "R10.9", "I10"]},
+    {"cpt": "93010", "supporting_icd": ["R07.9", "I21.4", "I50.9", "I10"]},
+    {"cpt": "71046", "supporting_icd": ["J18.9", "J44.1", "J45.909", "R07.9", "I50.9"]},
+    {"cpt": "44970", "supporting_icd": ["K35.80", "R10.9"]},
+    {"cpt": "44950", "supporting_icd": ["K35.80", "R10.9"]},
+    {"cpt": "27130", "supporting_icd": ["S72.001A"]},
+    {"cpt": "55700", "supporting_icd": ["N40.0"]},
+    {"cpt": "59510", "supporting_icd": ["O80"]},
+    {"cpt": "80053", "supporting_icd": ["E11.9", "E11.65", "I10", "I50.9", "N39.0"]},
+    {"cpt": "85025", "supporting_icd": ["J18.9", "N39.0", "K35.80", "I50.9"]}
+  ]
+}
