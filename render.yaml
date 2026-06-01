@@ -1,17 +1,15 @@
 # Render Blueprint — deploys the app as a free public web service.
-# Connect this repo at https://dashboard.render.com  ->  New  ->  Blueprint,
-# or use the one-click "Deploy to Render" button in the README.
+# Uses the repo Dockerfile (deterministic build) rather than Render's Python
+# autodetection. Connect this repo at https://dashboard.render.com -> New ->
+# Blueprint, or use the one-click "Deploy to Render" button in the README.
 services:
   - type: web
     name: medical-coding-billing
-    runtime: python
+    runtime: docker
+    dockerfilePath: ./Dockerfile
     plan: free
-    buildCommand: pip install -r requirements.txt
-    # Render injects $PORT; bind to 0.0.0.0 so the public router can reach it.
-    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /health
+    autoDeploy: true
     envVars:
       - key: EPIC_MOCK_MODE
         value: "true"
-      - key: PYTHON_VERSION
-        value: "3.11.9"
