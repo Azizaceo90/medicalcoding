@@ -19,13 +19,15 @@ from app.models import Claim, ClaimLine, Encounter
 
 # A tiny illustrative MS-DRG grouper keyed on principal ICD-10-CM / PCS codes.
 # Real grouping uses the full CMS GROUPER with CC/MCC severity logic.
+# "gmlos" = geometric mean length of stay (days); "amlos" = arithmetic mean LOS.
+# Used by utilization review to flag stays that run long relative to the DRG.
 _DRG_RULES: list[dict] = [
-    {"match_dx": {"I21.4"}, "drg": "280", "desc": "Acute MI, discharged alive w/ MCC", "weight": 1.7289},
-    {"match_dx": {"I50.9"}, "drg": "291", "desc": "Heart failure & shock w/ MCC", "weight": 1.3454},
-    {"match_dx": {"J18.9", "J44.1"}, "drg": "193", "desc": "Simple pneumonia & pleurisy w/ MCC", "weight": 1.4185},
-    {"match_dx": {"K35.80"}, "drg": "338", "desc": "Appendectomy w/o complicated principal dx", "weight": 1.6478},
-    {"match_pcs": {"0SR9019"}, "drg": "470", "desc": "Major hip/knee joint replacement w/o MCC", "weight": 1.9871},
-    {"match_dx": {"O80"}, "drg": "807", "desc": "Vaginal delivery w/o sterilization", "weight": 0.5934},
+    {"match_dx": {"I21.4"}, "drg": "280", "desc": "Acute MI, discharged alive w/ MCC", "weight": 1.7289, "gmlos": 4.8, "amlos": 6.1},
+    {"match_dx": {"I50.9"}, "drg": "291", "desc": "Heart failure & shock w/ MCC", "weight": 1.3454, "gmlos": 4.5, "amlos": 5.6},
+    {"match_dx": {"J18.9", "J44.1"}, "drg": "193", "desc": "Simple pneumonia & pleurisy w/ MCC", "weight": 1.4185, "gmlos": 4.7, "amlos": 5.9},
+    {"match_dx": {"K35.80"}, "drg": "338", "desc": "Appendectomy w/o complicated principal dx", "weight": 1.6478, "gmlos": 3.1, "amlos": 3.8},
+    {"match_pcs": {"0SR9019"}, "drg": "470", "desc": "Major hip/knee joint replacement w/o MCC", "weight": 1.9871, "gmlos": 2.4, "amlos": 2.8},
+    {"match_dx": {"O80"}, "drg": "807", "desc": "Vaginal delivery w/o sterilization", "weight": 0.5934, "gmlos": 2.1, "amlos": 2.4},
 ]
 _DRG_BASE_RATE = 6500.0  # illustrative hospital base payment rate (USD)
 
@@ -48,6 +50,8 @@ def _drg_payload(rule: dict) -> dict:
         "drg": rule["drg"],
         "description": rule["desc"],
         "weight": rule["weight"],
+        "gmlos": rule.get("gmlos"),
+        "amlos": rule.get("amlos"),
         "payment": round(rule["weight"] * _DRG_BASE_RATE, 2),
     }
 

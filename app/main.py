@@ -19,7 +19,7 @@ from fastapi.staticfiles import StaticFiles
 from app import __version__
 from app.config import settings
 from app.database import init_db
-from app.routers import billing, coding, encounters, epic, patients
+from app.routers import billing, coding, encounters, epic, patients, utilization
 
 STATIC_DIR = Path(__file__).resolve().parent / "static"
 
@@ -51,11 +51,17 @@ app.include_router(encounters.router)
 app.include_router(coding.router)
 app.include_router(billing.router)
 app.include_router(epic.router)
+app.include_router(utilization.router)
 
 
 @app.get("/", include_in_schema=False)
 def index() -> FileResponse:
     return FileResponse(STATIC_DIR / "index.html")
+
+
+@app.get("/utilization", include_in_schema=False)
+def utilization_page() -> FileResponse:
+    return FileResponse(STATIC_DIR / "utilization.html")
 
 
 # Serve JS/CSS assets. Mounted last so it does not shadow the API routes.

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inpatient Utilization Review — Submission Tool</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+  <style>
+    .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 12px 0; }
+    .metric { border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; background: #fff; }
+    .metric .label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+    .metric .value { font-size: 22px; font-weight: 700; margin-top: 4px; }
+    .metric .sub { font-size: 12px; color: var(--muted); }
+    .los-bar { height: 10px; background: #eef1f5; border-radius: 6px; overflow: hidden; margin-top: 8px; position: relative; }
+    .los-bar > span { display: block; height: 100%; }
+    .los-ok { background: var(--ok); }
+    .los-warn { background: var(--warn); }
+    .los-bad { background: var(--err); }
+    .ready-banner { padding: 12px 16px; border-radius: 10px; font-weight: 600; margin: 8px 0; }
+    .ready-yes { background: #e9f6ee; color: var(--ok); border: 1px solid #b6e3c6; }
+    .ready-no { background: #fdecea; color: var(--err); border: 1px solid #f4c4bd; }
+    .nav { display:flex; gap:14px; align-items:center; }
+    .nav a { color:#fff; font-size:13px; text-decoration:none; opacity:.85; }
+    .nav a:hover { opacity:1; text-decoration:underline; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📋 Inpatient Utilization Review</h1>
+    <p class="sub">Summarize an inpatient stay and check readiness for payer submission</p>
+    <div class="nav" style="position:absolute; top:18px; right:28px;">
+      <a href="/">← Coding &amp; Billing</a>
+      <a href="/docs" target="_blank">API</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Inpatient encounters</h2>
+      <p class="muted">Select an inpatient stay to review. Import or code cases on the
+        <a href="/">main coding page</a> first.</p>
+      <div class="row"><button onclick="loadList()">Refresh</button></div>
+      <div id="list" class="encounter-list"></div>
+    </section>
+
+    <section id="summary" class="hidden">
+      <section class="card">
+        <div id="ready"></div>
+        <div id="patient-line"></div>
+        <div class="metrics" id="metrics"></div>
+        <div id="los-review"></div>
+      </section>
+
+      <section class="card">
+        <h2>Diagnoses &amp; procedures</h2>
+        <div id="dx-px"></div>
+      </section>
+
+      <section class="card">
+        <h2>Submission readiness</h2>
+        <div id="blockers"></div>
+        <div id="advisories"></div>
+        <div class="row">
+          <button class="primary" onclick="downloadPacket()">Download submission packet (JSON)</button>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer>
+    <span>Demo system · LOS benchmarks (GMLOS/AMLOS) and MS-DRG weights are illustrative.</span>
+    <a href="/">Home</a>
+  </footer>
+
+  <script src="/static/utilization.js"></script>
+</body>
+</html>
