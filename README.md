@@ -56,6 +56,24 @@ edits, returning structured issues with `error` / `warning` / `info` severity:
 
 Billing is **blocked** (`HTTP 422`) while any `error`-severity edit is unresolved.
 
+## Deploy a live instance (public URL)
+
+The app is container-ready and runs on any host. The fastest no-setup option is
+**Render** (free tier, gives an `https://` URL):
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/Azizaceo90/medicalcoding/tree/claude/affectionate-maxwell-z8WYm)
+
+1. Click the button (or go to <https://dashboard.render.com> → **New → Blueprint**
+   and connect this repo/branch). Render reads `render.yaml` automatically.
+2. Approve the free **web service** and wait for the build.
+3. Open the `https://medical-coding-billing-XXXX.onrender.com` URL Render gives
+   you — that's your live, shareable link.
+
+Other hosts:
+- **Railway / Fly.io / Cloud Run** — use the included `Dockerfile`
+  (`fly launch`, `railway up`, or `gcloud run deploy --source .`).
+- **Any Docker host** — `docker build -t medcoding . && docker run -p 8000:8000 medcoding`.
+
 ## Quick start
 
 ```bash
